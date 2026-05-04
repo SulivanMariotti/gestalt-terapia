@@ -81,9 +81,16 @@
 
     /* ─── UTILITIES ──────────────────────────────────────── */
     .container {
-      width: min(100%, 860px);
+      width: min(100%, 1100px);
       margin-inline: auto;
-      padding-inline: 20px;
+      padding-inline: 24px;
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        width: min(100%, 1200px);
+        padding-inline: 40px;
+      }
     }
 
     .section-label {
@@ -155,6 +162,7 @@
 
     #hero .container {
       position: relative;
+      text-align: center;
     }
 
     .hero-eyebrow {
@@ -188,7 +196,6 @@
       color: rgba(255, 255, 255, .75);
       font-style: italic;
       margin-bottom: 28px;
-      max-width: 560px;
     }
 
     .hero-meta {
@@ -199,6 +206,7 @@
       color: rgba(255, 255, 255, .55);
       letter-spacing: .04em;
       margin-bottom: 36px;
+      justify-content: center;
     }
 
     .hero-meta span::before {
@@ -216,10 +224,10 @@
       border: 1px solid rgba(255, 255, 255, .12);
       border-left: 3px solid var(--gold);
       border-radius: var(--radius-sm);
-      padding: 16px 20px;
+      padding: 16px 24px;
       font-size: .9rem;
       color: rgba(255, 255, 255, .75);
-      max-width: 560px;
+      text-align: left;
     }
 
     .hero-nav {
@@ -227,6 +235,7 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 32px;
+      justify-content: center;
     }
 
     .hero-nav a {
@@ -257,7 +266,6 @@
     #sobre p {
       font-size: 1rem;
       line-height: 1.85;
-      max-width: 680px;
     }
 
     .sobre-tags {
@@ -483,7 +491,13 @@
 
     @media (min-width: 860px) {
       .concepts-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .concepts-grid {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
 
@@ -721,7 +735,7 @@
         <!-- substitua o texto abaixo pelos dados reais -->
         <span>Curso de Psicologia</span>
         <span>Teorias e Técnicas</span>
-        <span>São Paulo, 2026</span>
+        <span>Itaquaquecetuba, 2026</span>
       </div>
       <div class="hero-welcome">
         Bem-vindo(a)! Aqui você encontra os quatro materiais produzidos para este trabalho:
@@ -935,7 +949,7 @@
       <div class="container">
         <p class="section-label">Visão Geral</p>
         <h2 class="section-title">Os Pilares da Gestalt-Terapia</h2>
-        <p style="max-width:580px;margin-bottom:32px;">
+        <p style="max-width:780px;margin-bottom:32px;">
           O infográfico abaixo apresenta de forma visual os fundamentos que sustentam a abordagem gestáltica da base
           filosófica às práticas clínicas centrais.
         </p>
