@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Gestalt-Terapia em Cena — Uma encenação comentada sobre ansiedade, evitação e contato terapêutico. Trabalho acadêmico de Psicologia, 2026." />
+  <meta property="og:title" content="Gestalt-Terapia em Cena" />
+  <meta property="og:description" content="Uma encenação comentada sobre ansiedade, evitação e contato terapêutico." />
+  <meta property="og:image" content="video/poster.jpg" />
+  <title>Gestalt-Terapia em Cena</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --navy: #3E1B5E;
+      /* Roxo profundo — títulos, hero, rodapé */
+      --green: #1A9E96;
+      /* Teal — botões, acentos */
+      --gold: #D4682A;
+      /* Laranja quente — labels, destaques */
+      --gold-lt: #F2C074;
+      /* Laranja claro */
+      --cream: #F7F2EA;
+      /* Creme quente — fundo principal */
+      --cream2: #EDE4D4;
+      /* Creme escuro — fundos alternados */
+      --graphite: #1e0e30;
+      --mid: #5a4870;
+      --light: #ddd3e8;
+      --white: #ffffff;
+
+      --serif: 'Lora', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+
+      --radius-sm: 8px;
+      --radius: 16px;
+      --radius-lg: 24px;
+
+      --shadow-sm: 0 2px 8px rgba(30, 58, 95, .08);
+      --shadow: 0 6px 24px rgba(30, 58, 95, .12);
+      --shadow-lg: 0 16px 48px rgba(30, 58, 95, .16);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--graphite);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ─── UTILITIES ──────────────────────────────────────── */
+    .container {
+      width: min(100%, 860px);
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    h2.section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      line-height: 1.25;
+    }
+
+    p {
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    section {
+      padding-block: 64px;
+    }
+
+    section+section {
+      border-top: 1px solid var(--light);
+    }
+
+    /* ─── FADE-IN ANIMATION ──────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    #hero {
+      background: var(--navy);
+      padding-block: 72px 64px;
+      border-top: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 55% at 80% 20%, rgba(45, 90, 61, .35) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 10% 90%, rgba(201, 150, 15, .12) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    #hero .container {
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 20px;
+      opacity: .85;
+    }
+
+    #hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    #hero h1 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero-sub {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(255, 255, 255, .75);
+      font-style: italic;
+      margin-bottom: 28px;
+      max-width: 560px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .55);
+      letter-spacing: .04em;
+      margin-bottom: 36px;
+    }
+
+    .hero-meta span::before {
+      content: '•';
+      margin-right: 16px;
+      opacity: .4;
+    }
+
+    .hero-meta span:first-child::before {
+      display: none;
+    }
+
+    .hero-welcome {
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .75);
+      max-width: 560px;
+    }
+
+    .hero-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .hero-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .8);
+      text-decoration: none;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+
+    .hero-nav a:hover {
+      background: rgba(255, 255, 255, .12);
+      border-color: rgba(255, 255, 255, .4);
+      color: var(--white);
+    }
+
+    /* ─── SOBRE ──────────────────────────────────────────── */
+    #sobre {
+      background: var(--white);
+    }
+
+    #sobre p {
+      font-size: 1rem;
+      line-height: 1.85;
+      max-width: 680px;
+    }
+
+    .sobre-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 13px;
+      border-radius: 100px;
+      font-size: .75rem;
+      font-weight: 500;
+      background: var(--cream2);
+      color: var(--navy);
+      border: 1px solid var(--light);
+    }
+
+    /* ─── VÍDEO ──────────────────────────────────────────── */
+    #video {
+      background: var(--cream);
+    }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: #000;
+      aspect-ratio: 16/9;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ── YouTube fallback: uncomment the block below and remove the <video> tag
+    .video-wrapper iframe {
+      width: 100%; height: 100%; border: 0;
+    }
+    ── */
+    .video-caption {
+      margin-top: 14px;
+      font-size: .85rem;
+      color: var(--mid);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ─── PDF ────────────────────────────────────────────── */
+    #pdf {
+      background: var(--white);
+    }
+
+    .pdf-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: var(--cream);
+      border: 1px solid var(--light);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    @media (min-width: 600px) {
+      .pdf-card {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .pdf-icon {
+      flex-shrink: 0;
+      width: 64px;
+      height: 64px;
+      background: #e8f0e0;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pdf-icon svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .pdf-info {
+      flex: 1;
+    }
+
+    .pdf-info h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .pdf-info p {
+      font-size: .875rem;
+      margin: 0;
+    }
+
+    .pdf-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 20px;
+      border-radius: 100px;
+      font-size: .85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: filter .2s, transform .15s;
+    }
+
+    .btn:hover {
+      filter: brightness(1.07);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
+    }
+
+    /* ─── ÁUDIO ──────────────────────────────────────────── */
+    #audio {
+      background: var(--cream);
+    }
+
+    .audio-card {
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 32px;
+      color: var(--white);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .audio-card .section-label {
+      color: var(--gold-lt);
+    }
+
+    .audio-card h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+
+    .audio-card p {
+      color: rgba(255, 255, 255, .65);
+      font-size: .875rem;
+      margin-bottom: 20px;
+    }
+
+    .audio-card audio {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+      accent-color: var(--gold);
+    }
+
+    .audio-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .8);
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .audio-download:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    /* ─── CONCEITOS ──────────────────────────────────────── */
+    #conceitos {
+      background: var(--white);
+    }
+
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    @media (min-width: 560px) {
+      .concepts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 860px) {
+      .concepts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .concept-card {
+      background: var(--cream);
+      border: 1px solid var(--light);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: box-shadow .25s, transform .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--navy);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .concept-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .concept-card:hover::before {
+      opacity: 1;
+    }
+
+    .concept-num {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .concept-card h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .concept-card p {
+      font-size: .85rem;
+      color: var(--mid);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ─── REFERÊNCIAS ────────────────────────────────────── */
+    #referencias {
+      background: var(--cream);
+    }
+
+    .ref-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ref-list li {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      font-size: .875rem;
+      color: var(--mid);
+      line-height: 1.6;
+      padding: 12px 16px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--light);
+      overflow-wrap: break-word;
+      word-break: break-word;
+      min-width: 0;
+    }
+
+    .ref-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 7px;
+    }
+
+    /* ─── RODAPÉ ─────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255, 255, 255, .55);
+      padding-block: 52px;
+      font-size: .85rem;
+    }
+
+    footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .footer-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer-authors {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-author-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .65);
+    }
+
+    .footer-author-item svg {
+      opacity: .4;
+      flex-shrink: 0;
+    }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-note {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .35);
+      font-style: italic;
+    }
+
+    /* ─── INFOGRÁFICO ───────────────────────────────────────── */
+    #infografico {
+      background: var(--white);
+    }
+
+    .infografico-figure {
+      background: var(--cream2);
+      border: 1px solid var(--light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .infografico-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      /* ── placeholder visual enquanto a imagem não é carregada ── */
+      min-height: 280px;
+      background:
+        repeating-linear-gradient(135deg,
+          var(--cream2) 0px, var(--cream2) 12px,
+          var(--light) 12px, var(--light) 14px);
+      object-fit: contain;
+    }
+
+    .infografico-caption {
+      padding: 14px 20px;
+      font-size: .8rem;
+      color: var(--mid);
+      font-style: italic;
+      text-align: center;
+      border-top: 1px solid var(--light);
+    }
+
+    /* ─── BACK TO TOP ────────────────────────────────────── */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .3s, transform .3s;
+      z-index: 99;
+      pointer-events: none;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: var(--green);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ HERO ══════════════════════════════════════════════ -->
+  <header id="hero">
+    <div class="container">
+      <span class="hero-eyebrow">Trabalho Acadêmico · Teorias e Técnicas · 2026</span>
+      <h1>Gestalt-Terapia<br /><em>em Cena</em></h1>
+      <p class="hero-sub">Uma encenação comentada sobre ansiedade, evitação e contato terapêutico</p>
+      <div class="hero-meta">
+        <!-- substitua o texto abaixo pelos dados reais -->
+        <span>Curso de Psicologia</span>
+        <span>Teorias e Técnicas</span>
+        <span>São Paulo, 2026</span>
+      </div>
+      <div class="hero-welcome">
+        Bem-vindo(a)! Aqui você encontra os quatro materiais produzidos para este trabalho:
+        o <strong style="color:#fff;">resumo em vídeo ilustrado</strong>, o <strong style="color:#fff;">roteiro completo
+          em PDF</strong>
+        , o <strong style="color:#fff;">resumo em áudio</strong> e um <strong style="color:#fff;">Infografico</strong>.
+        Role a página ou use os atalhos abaixo.
+      </div>
+      <nav class="hero-nav" aria-label="Seções da página">
+        <a href="#video">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+          Vídeo
+        </a>
+        <a href="#pdf">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          PDF
+        </a>
+        <a href="#audio">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+            <path
+              d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+          </svg>
+          Áudio
+        </a>
+        <a href="#infografico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Infográfico
+        </a>
+        <a href="#conceitos">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          Conceitos
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══ SOBRE ══════════════════════════════════════════════ -->
+  <main>
+    <section id="sobre" class="reveal">
+      <div class="container">
+        <p class="section-label">Sobre o Trabalho</p>
+        <h2 class="section-title">O que é a Gestalt-Terapia?</h2>
+        <p>
+          A Gestalt-terapia é uma abordagem humanista-existencial desenvolvida por Fritz Perls e Laura Perls a partir
+          dos anos 1950, com contribuições fundamentais de Paul Goodman. Partindo de uma visão de ser humano integrado
+          que não separa mente, corpo e ambiente, propõe uma clínica radicalmente voltada para o <em>aqui-e-agora</em>,
+          para a experiência vivida na sessão, e para o encontro genuíno entre terapeuta e cliente.
+        </p>
+        <p>
+          Este trabalho propõe uma <strong>encenação comentada</strong> que coloca esses conceitos em movimento: ao
+          invés de descrever a teoria de forma abstrata, um grupo de alunos encenou uma sessão terapêutica e interrompeu
+          a cena em momentos-chave para contextualizar teoricamente o que estava acontecendo. O resultado é uma
+          experiência pedagógica que une rigor conceitual e vivência prática.
+        </p>
+        <p>
+          Os conceitos centrais trabalhados incluem o <em>aqui-e-agora</em>, a <em>awareness</em> (percepção ativa e
+          encarnada), o <em>contato</em> e seus ciclos, o <em>ajustamento criativo</em> e os mecanismos de interrupção
+          do contato especialmente a <em>deflexão</em>. O caso clínico ficcionado acompanha um cliente de 28 anos com
+          queixas de ansiedade e padrões sistemáticos de evitação, que chega à terapia em conflito com sua própria
+          experiência de sofrimento.
+        </p>
+        <p>
+          Mais do que transmitir conteúdo, o trabalho convida à percepção: o que acontece <em>neste momento</em> quando
+          nos encontramos com alguém que sofre?
+        </p>
+        <div class="sobre-tags" role="list" aria-label="Conceitos-chave">
+          <span class="tag" role="listitem">Aqui-e-agora</span>
+          <span class="tag" role="listitem">Awareness</span>
+          <span class="tag" role="listitem">Ciclo de contato</span>
+          <span class="tag" role="listitem">Ajustamento criativo</span>
+          <span class="tag" role="listitem">Deflexão</span>
+          <span class="tag" role="listitem">Método fenomenológico</span>
+          <span class="tag" role="listitem">Teoria paradoxal da mudança</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ VÍDEO ══════════════════════════════════════════════ -->
+    <section id="video" class="reveal">
+      <div class="container">
+        <p class="section-label">Material Audiovisual</p>
+        <h2 class="section-title">Apresentação em Vídeo</h2>
+        <div class="video-wrapper">
+          <!-- ── OPÇÃO A: arquivo local (padrão) ─────────────────────────────────
+           Coloque o arquivo em  video/apresentacao.mp4
+           e uma imagem de poster em  video/poster.jpg                       -->
+          <video controls preload="metadata" poster="video/poster.jpg"
+            aria-label="Vídeo da encenação comentada de Gestalt-Terapia">
+            <source src="video/apresentacao.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo HTML5. <a href="video/apresentacao.mp4">Baixe o vídeo</a>.
+          </video>
+
+          <!-- ── OPÇÃO B: embed do YouTube ───────────────────────────────────────
+           Para usar, remova (ou comente) o <video> acima e descomente abaixo.
+           Substitua VIDEO_ID pelo ID do seu vídeo do YouTube.
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID?rel=0"
+        title="Apresentação em vídeo — Gestalt-Terapia em Cena"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      ──────────────────────────────────────────────────────────────────────── -->
+        </div>
+        <p class="video-caption">
+          Encenação terapêutica ilustrando a sessão e as pausas teóricas que contextualizam cada momento
+          clínico.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ PDF ════════════════════════════════════════════════ -->
+    <section id="pdf" class="reveal">
+      <div class="container">
+        <p class="section-label">Documento Completo</p>
+        <h2 class="section-title">Roteiro &amp; Referencial Teórico</h2>
+        <div class="pdf-card">
+          <div class="pdf-icon" aria-hidden="true">
+            <!-- ícone PDF inline -->
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="2" width="20" height="26" rx="2" fill="#2d5a3d" opacity=".15" />
+              <rect x="4" y="2" width="20" height="26" rx="2" stroke="#2d5a3d" stroke-width="1.5" />
+              <path d="M18 2v7h6" stroke="#2d5a3d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <text x="7" y="24" font-family="sans-serif" font-size="7" font-weight="700" fill="#2d5a3d">PDF</text>
+            </svg>
+          </div>
+          <div class="pdf-info">
+            <h3>Roteiro Completo</h3>
+            <p>
+              O documento traz o roteiro integral da encenação, o referencial teórico detalhado, os conceitos-chave e as
+              referências bibliográficas utilizadas na elaboração do trabalho.
+            </p>
+          </div>
+          <div class="pdf-actions">
+            <!-- substitua o href pelo caminho correto do seu arquivo PDF -->
+            <a href="docs/roteiro_gestalt_terapia.pdf" download class="btn btn-primary"
+              aria-label="Baixar roteiro completo em PDF">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Baixar PDF
+            </a>
+            <a href="docs/roteiro_gestalt_terapia.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline"
+              aria-label="Visualizar roteiro em nova aba">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Visualizar
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ÁUDIO ══════════════════════════════════════════════ -->
+    <section id="audio" class="reveal">
+      <div class="container">
+        <div class="audio-card">
+          <p class="section-label">Revisão em Áudio</p>
+          <h3>Resumo em Áudio</h3>
+          <p>
+            Versão em áudio do conteúdo principal ideal para revisar no caminho ou enquanto se exercita. Duração
+            aproximada: confira ao iniciar a reprodução.
+          </p>
+          <!-- substitua o src pelo caminho do seu arquivo MP3 -->
+          <audio controls preload="metadata" aria-label="Áudio-resumo do trabalho de Gestalt-Terapia">
+            <source src="audio/resumo.mp3" type="audio/mpeg" />
+            Seu navegador não suporta áudio HTML5. <a href="audio/resumo.mp3" style="color:var(--gold-lt);">Baixe o
+              MP3</a>.
+          </audio>
+          <a href="audio/resumo.mp3" download class="audio-download" aria-label="Baixar arquivo de áudio MP3">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Baixar MP3
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ INFOGRÁFICO ═══════════════════════════════════════ -->
+    <section id="infografico" class="reveal">
+      <div class="container">
+        <p class="section-label">Visão Geral</p>
+        <h2 class="section-title">Os Pilares da Gestalt-Terapia</h2>
+        <p style="max-width:580px;margin-bottom:32px;">
+          O infográfico abaixo apresenta de forma visual os fundamentos que sustentam a abordagem gestáltica da base
+          filosófica às práticas clínicas centrais.
+        </p>
+        <!-- ── Coloque a imagem do infográfico no caminho abaixo ──────────────
+         Sugestão de formatos: PNG ou SVG para melhor qualidade.
+         Substitua "img/infografico_pilares.png" pelo caminho real do arquivo. -->
+        <figure class="infografico-figure">
+          <img src="img/infografico_pilares.png" alt="Infográfico dos pilares da Gestalt-Terapia"
+            class="infografico-img" loading="lazy" />
+          <figcaption class="infografico-caption">
+            Infográfico elaborado pelo grupo pilares teóricos e clínicos da Gestalt-terapia.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══ CONCEITOS ═════════════════════════════════════════ -->
+    <section id="conceitos" class="reveal">
+      <div class="container">
+        <p class="section-label">Glossário Teórico</p>
+        <h2 class="section-title">Conceitos-Chave</h2>
+        <div class="concepts-grid">
+
+          <article class="concept-card">
+            <p class="concept-num">01</p>
+            <h3>Awareness</h3>
+            <p>Percepção ativa e encarnada do que se passa no campo organismo-ambiente. Não é simples consciência
+              racional, mas um saber que inclui corpo, sensação e emoção no aqui-e-agora.</p>
+          </article>
+
+          <article class="concept-card">
+            <p class="concept-num">02</p>
+            <h3>Aqui-e-agora</h3>
+            <p>Princípio fundamental da Gestalt-terapia: o foco terapêutico recai sempre sobre o que está vivo e
+              presente na experiência imediata, não em narrativas sobre o passado ou o futuro.</p>
+          </article>
+
+          <article class="concept-card">
+            <p class="concept-num">03</p>
+            <h3>Ciclo de Contato</h3>
+            <p>Sequência que descreve como o organismo se relaciona com o ambiente: <em>sensação → consciência →
+                mobilização → ação → contato → retirada</em>. Interrupções nesse ciclo são fontes de sofrimento.</p>
+          </article>
+
+          <article class="concept-card">
+            <p class="concept-num">04</p>
+            <h3>Ajustamento Criativo</h3>
+            <p>A resposta que o organismo encontra para lidar com o campo disponível. A pessoa sempre faz o melhor
+              possível com os recursos que tem no momento o sintoma é uma solução, não um defeito.</p>
+          </article>
+
+          <article class="concept-card">
+            <p class="concept-num">05</p>
+            <h3>Deflexão</h3>
+            <p>Mecanismo de interrupção do contato em que a pessoa desvia a energia ou a atenção para evitar o encontro
+              pleno com a experiência ou com o outro comum em padrões de ansiedade e evitação.</p>
+          </article>
+
+          <article class="concept-card">
+            <p class="concept-num">06</p>
+            <h3>Teoria Paradoxal da Mudança</h3>
+            <p>Formulada por Arnold Beisser (1970): a mudança genuína ocorre não quando a pessoa tenta ser diferente,
+              mas quando se torna mais plenamente o que já é. O esforço de mudar muitas vezes impede a mudança.</p>
+          </article>
+
+          <article class="concept-card">
+            <p class="concept-num">07</p>
+            <h3>Método Fenomenológico</h3>
+            <p>Postura clínica de descrever e não interpretar o que aparece na experiência. Inclui a <em>epochè</em>
+              (suspensão de pré-conceitos) e a <em>equalização</em> (abertura a todos os dados do campo, sem hierarquia
+              prévia).</p>
+          </article>
+
+          <article class="concept-card">
+            <p class="concept-num">08</p>
+            <h3>Experimento Gestáltico</h3>
+            <p>Proposta criativa que emerge da experiência presente do cliente e do terapeuta, convidando à exploração
+              de novas formas de contato, percepção e ação no próprio espaço terapêutico.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ REFERÊNCIAS ════════════════════════════════════════ -->
+    <section id="referencias" class="reveal">
+      <div class="container">
+        <p class="section-label">Fontes</p>
+        <h2 class="section-title">Referências Principais</h2>
+        <ul class="ref-list" aria-label="Lista de referências bibliográficas">
+          <li>PERLS, F.; HEFFERLINE, R.; GOODMAN, P. <strong>Gestalt-terapia</strong>. São Paulo: Summus, 1997.</li>
+          <li>YONTEF, G. <strong>Processo, diálogo e awareness</strong>. São Paulo: Summus, 1998.</li>
+          <li>POLSTER, E.; POLSTER, M. <strong>Gestalt-terapia integrada</strong>. São Paulo: Summus, 2001.</li>
+          <li>RIBEIRO, J. P. <strong>Gestalt-terapia: refazendo um caminho</strong>. São Paulo: Summus, 1985.</li>
+          <li>ZINKER, J. <strong>Processo criativo em Gestalt-terapia</strong>. São Paulo: Summus, 2007.</li>
+          <li>GINGER, S.; GINGER, A. <strong>Gestalt: uma terapia do contato</strong>. São Paulo: Summus, 1995.</li>
+          <li>BEISSER, A. <strong>The paradoxical theory of change</strong>. In: Fagan, J.; Shepherd, I. L. (Eds.).
+            <em>Gestalt therapy now</em>. New York: Harper &amp; Row, 1970.
+          </li>
+          <li>ASSOCIAÇÃO BRASILEIRA DE GESTALT-TERAPIA (ABG). Disponível em: <a href="https://www.abg.org.br"
+              target="_blank" rel="noopener noreferrer"
+              style="color:var(--navy);text-decoration:underline;">www.abg.org.br</a>.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ RODAPÉ ═════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div>
+        <p class="footer-title">Integrantes do Grupo</p>
+        <!-- substitua cada "Integrante N" pelo nome real dos alunos -->
+        <div class="footer-authors" role="list">
+          <div class="footer-author-item" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Carmen Vitoria Mascarenhas de Oliveira<!-- substitua pelo nome real -->
+          </div>
+          <div class="footer-author-item" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Danielly Vitor de Melo<!-- substitua pelo nome real -->
+          </div>
+          <div class="footer-author-item" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Joice S. Enjyogi<!-- substitua pelo nome real -->
+          </div>
+          <div class="footer-author-item" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Natalia Nascimento de Menezes<!-- substitua pelo nome real -->
+          </div>
+          <div class="footer-author-item" role="listitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Sulivan F. Mariotti<!-- substitua pelo nome real -->
+          </div>
+        </div>
+        <p style="margin-top:14px;font-size:.82rem;">
+          <!-- substitua pelo nome real do(a) professor(a) -->
+          <strong style="color:rgba(255,255,255,.55);">Orientação:</strong>&nbsp;
+          <span style="color:rgba(255,255,255,.45);">Prof(a). </span>
+        </p>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <span>Curso de Psicologia &nbsp;·&nbsp; Itaquaquecetuba, 2026</span>
+        <span class="footer-note">Material produzido exclusivamente para fins acadêmicos.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ BOTÃO VOLTAR AO TOPO ══════════════════════════════ -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo da página"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <script>
+    /* ── IntersectionObserver para fade-in nas seções ──────── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+    revealEls.forEach((el) => observer.observe(el));
+
+    /* ── Botão voltar ao topo ──────────────────────────────── */
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 400);
+    }, { passive: true });
+  </script>
+</body>
+
+</html>
